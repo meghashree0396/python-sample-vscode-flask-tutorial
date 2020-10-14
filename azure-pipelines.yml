@@ -56,9 +56,7 @@ stages:
         archiveFile: $(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip
         replaceExistingArchive: true
 
-    - upload: $(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip
-      displayName: 'Upload package'
-      artifact: drop
+    
     - task: PublishBuildArtifacts@1
 
 - stage: Deploy
@@ -85,5 +83,5 @@ stages:
             inputs:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+              package: $(Pipeline.Workspace)/$(Build.BuildId).zip
               startUpCommand: 'gunicorn --bind=0.0.0.0 --workers=4 startup:app'
