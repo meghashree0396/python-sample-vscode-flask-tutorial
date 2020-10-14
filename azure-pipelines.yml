@@ -22,8 +22,8 @@ variables:
   # Project root folder. Point to the folder containing manage.py file.
   projectRoot: $(System.DefaultWorkingDirectory)
   
-  # Python version: 3.7
-  pythonVersion: '3.7'
+  # Python version: 3.6
+  pythonVersion: '3.6'
 
 stages:
 - stage: Build
@@ -53,10 +53,10 @@ stages:
         rootFolderOrFile: '$(projectRoot)'
         includeRootFolder: false
         archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip
         replaceExistingArchive: true
 
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    - upload: $(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip
       displayName: 'Upload package'
       artifact: drop
 
