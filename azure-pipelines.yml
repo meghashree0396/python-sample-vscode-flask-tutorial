@@ -59,6 +59,7 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)/Application$(Build.BuildId).zip
       displayName: 'Upload package'
       artifact: drop
+    - task: PublishBuildArtifacts@1
 
 - stage: Deploy
   displayName: 'Deploy Web App'
