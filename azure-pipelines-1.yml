@@ -80,8 +80,8 @@ stages:
             displayName: 'Use Python version'
 
           - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : sampletestapp2481'
+            displayName: 'Deploy Azure Web App : {{ webAppName }}'
             inputs:
               azureSubscription: $(azureServiceConnectionId)
               appName: $(webAppName)
-              package: '$(System.DefaultWorkingDirectory)\**\Application*.zip'
+              package: $(Pipeline.Workspace)/drop/*$(Build.BuildId).zip
